@@ -1,6 +1,6 @@
 <?php
 
-$exclude = array('.', '..');
+$exclude = array('.', '..', '.git');
 
 function getDirNames() {
 	global $exclude;
