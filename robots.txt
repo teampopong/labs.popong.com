@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /icomment
+Disallow: /network-visualization
+Disallow: /codenamu
+Disallow: /mobile-120411
+Disallow: /network-similar
+Disallow: /move-distribution
+Disallow: /avg-move-per-party

@@ -1,0 +1,118 @@
+#container {
+	display: table;
+	font-size: 0.8em;
+}
+
+#maincomment,
+#childcomments {
+	display: table-cell;
+}
+
+.comment {
+	/* size */
+	vertical-align: middle;
+	width: 400px;
+	margin-left: 20px;
+	padding: 0 12px 0 12px;
+	line-height: 150%;
+
+	/* interaction */
+	cursor: pointer;
+
+	/* text */
+	color: #2f2f4f;
+
+	/* box shape */
+	border: 1px solid #bbd;
+	border-radius: 5px;
+	background-image: -webkit-gradient(
+		linear,
+		right bottom,
+		left top,
+		color-stop(0.15, rgb(223,223,255)),
+		color-stop(0.58, rgb(241,241,255))
+	);
+	background-image: -moz-linear-gradient(
+		right bottom,
+		rgb(223,223,255) 15%,
+		rgb(241,241,255) 58%
+	);
+}
+
+.comment:hover {
+	/* box shape */
+	background-image: -webkit-gradient(
+		linear,
+		right bottom,
+		left top,
+		color-stop(0.15, rgb(209,209,255)),
+		color-stop(0.58, rgb(228,228,255))
+	);
+	background-image: -moz-linear-gradient(
+		right bottom,
+		rgb(213,213,255) 15%,
+		rgb(229,229,255) 58%
+	);
+}
+
+.newcomment {
+	border: 1px dashed #bbd;
+	background: #fff;
+}
+
+.newcomment:hover {
+	background: #eef;
+}
+
+.writecomment {
+	padding: 10px;
+}
+
+.writecomment textarea {
+	border: 1px solid #aaa;
+	width: 100%;
+}
+
+.writecomment .embed {
+	margin: 0;
+}
+
+.writecomment .submit {
+	margin: 0;
+	float: right;
+}
+
+#childcomments .comment {
+	margin-bottom: 10px;
+}
+
+#childcomments .comment:last-child {
+	margin-bottom: 0;
+}
+
+.comment .author {
+	font-weight: bold;
+}
+
+.comment .date {
+	float: right;
+	font-style: italic;
+}
+
+.comment .content {
+}
+
+#embedpopup {
+	display: table;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 800px;
+	height: 500px;
+
+	cursor: pointer;
+
+	/* box shape */
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}

@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<title>test</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="raphael-min.js"></script>
+		<script type="text/javascript" src="underscore-min.js"></script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+		<script>
+			var Popong = (function () {
+				var Popong = {
+					init: function (elem, x, y) {
+						return _.extend(this, Raphael(elem, x, y));
+					},
+					intimacy: function (elem, member1, member2) {
+						var intimacy = this.init(elem, 700, 500);
+						member1 = _.clone(member1);
+						member2 = _.clone(member2);
+
+						///// render basic components /////
+
+						// member represented as points
+						intimacy.members = [
+								drawPoint(200, 250, COLOR_BALL, member1.name_kr, member1.profile_image),
+								drawPoint(500, 250, COLOR_BALL, member2.name_kr, member2.profile_image)
+								];
+						intimacy.centerLine = drawLine(200, 250, 500, 250, COLOR_LINE, '0.6'); // FIXME: 0.6 -> real
+
+						var intersection = processIntersection();
+						drawIntersected(intersection);
+						drawNonintersected(false);
+						drawNonintersected(true);
+
+						///// private functions /////
+						function processIntersection() {
+							var intersection = _.intersection(
+								_.pluck(member1.adjacents, 0),
+								_.pluck(member2.adjacents, 0)
+								);
+
+							_processIntersection(member1);
+							_processIntersection(member2);
+
+							function _processIntersection(member) {
+								member.intersected = [];
+								member.nonintersected = [];
+
+								_.each(member.adjacents, function (tuple) {
+									if (_.contains(intersection, tuple[0])) {
+										member.intersected.push(tuple);
+									} else {
+										member.nonintersected.push(tuple);
+									}
+								});
+							}
+
+							return _.clone(member1.intersected);
+						}
+
+						function drawIntersected(intersection) {
+							if (!intersection.length) return;
+
+							// draw rect
+							intimacy.rect(300, 100, 100, 125, 10).attr({
+								stroke: '#999',
+								'stroke-width': 2,
+								fill: '#f7f7f7'
+							}).mouseover(function () {
+								this.animate({
+									'stroke-width': 3
+								}, 100, 'elastic');
+							}).mouseout(function () {
+								this.animate({
+									'stroke-width': 2
+								}, 100, 'elastic');
+							}).toBack();
+
+							intersection = intersection.slice(0, 2);
+							drawPoint(325, 135, COLOR_BALL, intersection[0][0], intersection[0][2]);
+							drawLine(200, 250, 325, 175, COLOR_LINE, null, { 'stroke-dasharray': '.'});
+							drawPoint(375, 135, COLOR_BALL, intersection[1][0], intersection[1][2]);
+							drawLine(500, 250, 375, 175, COLOR_LINE, null, { 'stroke-dasharray': '.'});
+							intimacy.text(350, 185, '...').attr(STYLE_FONT);
+						}
+
+						function drawNonintersected(left) {
+							if (left) {
+								intimacy.path('M125,250 a37.5,37.5 0 0,0 -75,0 C50,350 100,400 200,400 a37.5,37.5 0 0,0 0,-75 C150,325 125,300 125,250 z').attr({
+									stroke: '#999',
+									'stroke-width': 2,
+									fill: '#f7f7f7'
+								}).mouseover(function () {
+									this.animate({
+										'stroke-width': 3
+									}, 100, 'elastic');
+								}).mouseout(function () {
+									this.animate({
+										'stroke-width': 2
+									}, 100, 'elastic');
+								});
+								drawLine(200, 250, 100, 300, COLOR_LINE, null, { 'stroke-dasharray': '.'});
+
+								drawPoint(87.5, 250, COLOR_BALL, member1.nonintersected[0][0], member1.nonintersected[0][2]);
+								drawPoint(108, 317, COLOR_BALL, member1.nonintersected[1][0], member1.nonintersected[1][2]);
+								intimacy.text(175, 355, '...').attr(STYLE_FONT);
+							} else {
+								intimacy.path('M575,250 a37.5,37.5 0 0,1 75,0 C650,350 600,400 500,400 a37.5,37.5 0 0,1 0,-75 C550,325 575,300 575,250 z').attr({
+									stroke: '#999',
+									'stroke-width': 2,
+									fill: '#f7f7f7'
+								}).mouseover(function () {
+									this.animate({
+										'stroke-width': 3
+									}, 100, 'elastic');
+								}).mouseout(function () {
+									this.animate({
+										'stroke-width': 2
+									}, 100, 'elastic');
+								});
+								drawLine(500, 250, 600, 300, COLOR_LINE, null, { 'stroke-dasharray': '.'});
+
+								drawPoint(612.5, 250, COLOR_BALL, member2.nonintersected[0][0], member2.nonintersected[0][2]);
+								drawPoint(592, 317, COLOR_BALL, member2.nonintersected[1][0], member2.nonintersected[1][2]);
+								intimacy.text(525, 355, '...').attr(STYLE_FONT);
+							}
+						}
+
+						///// return w/ APIS /////
+						return _.extend(intimacy, {
+						});
+					}
+				};
+
+				var COLOR_BALL = 'r(0.40, 0.40)#aae-#337';
+				var COLOR_LINE = '#555';
+				var STYLE_FONT = {
+					'font-family': 'sans serif',
+					'font-size': 12,
+					'fill': '#333'
+				};
+
+				String.prototype.format = function () {
+					var formatted = this;
+					for (var i = 0; i < arguments.length; i++) {
+						var regexp = new RegExp('\\{'+i+'\\}', 'gi');
+						formatted = formatted.replace(regexp, arguments[i]);
+					}
+					return formatted;
+				}
+
+				function drawLine(mx, my, lx, ly, color, text, options) { // TODO reduce the # of parameters
+					color = color || randColor();
+					options = options || {};
+					text = text && Popong.text((mx+lx)/2, (my+ly)/2 - 10, text).attr(STYLE_FONT);
+
+					return Popong.path('M{0} {1}L{2} {3}'.format(mx, my, lx, ly)).attr(_.extend(options, {
+						'stroke-width': 2,
+						stroke: color
+					})).toBack();
+				}
+
+				function drawPoint(x, y, color, text, img) {
+					color = color || randColor();
+					text = text && Popong.text(x, y+(img?30:20), text).attr(STYLE_FONT);
+
+					if (img){
+						var c = Popong.image(img, x-15, y-20, 30, 40);
+					} else {
+						var c = Popong.circle(x, y, 10).attr({
+							fill: color,
+							stroke: color
+						}).mouseover(function () {
+							this.animate({scale: [1.1, 1.1]}, 100, "elastic");
+							text && text.attr({'font-weight': 'bold'});
+						}).mouseout(function () {
+							this.animate({scale: [1, 1]}, 100, "elastic");
+							text && text.attr({'font-weight': 'normal'});
+						});
+					}
+
+
+					return c;
+				}
+
+				function randColor() {
+					// TODO: generate more fancy, pre-defined colors, with gradient
+					return 'rgb({0}, {0}, {0})'.format(randInt(0, 255), randInt(0, 255), randInt(0, 255));
+				}
+
+				function randInt(min, max) {
+					return Math.floor(min + Math.random() * (max-min));
+				}
+
+				return Popong;
+			})();
+
+			var member1 = {
+					name_kr: '강기갑',
+					profile_image: 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=tiR9Nmk3LEZ5rIUEqbOa0q0fy3yn6vOmsWhe%2B7kaVatbRqjVVfTVFg%3D%3D',
+					adjacents: [
+						['사람1', 0.4, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=4LXuywTTIEVfZxCbWdS6jYYet790hzwHmF8Amt4MsBEjEav4TbWUUg%3D%3D'],
+						['사람2', 0.3, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=yBn04gf5ZJbtL7Qfp7YtSiQZJqake10MhOUcPSW9x1YDg2iSucw5EA%3D%3D'],
+						['사람4', 0.8, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=wQDY%2FIHvx5c69GDForePTasiXf45b43ZV3DrA%2BEID97gAu8abIJ%2Few%3D%3D'],
+						['사람5', 1, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=vFe76MpPrbbSQvJGiaQiOLWtt00TKZZgZRJYRfd3qGaCy4gQpfT%2BDA%3D%3D']
+					]
+				},
+				member2 = {
+					name_kr: '강기정',
+					profile_image: 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=M8wv%2FzmxRKKmMr3Dfy7qTtPi9m%2BNOmT8AcKTNsOUbd%2BQn0EoszSBAA%3D%3D',
+					adjacents: [
+						['사람1', 0.6, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=rRXz5w9emzygMc2dF0tvDyBB5UhZeBcFhrcpZFIPhCgQJ%2B%2BcRqEmpA%3D%3D'],
+						['사람2', 0.8, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=yBn04gf5ZJbtL7Qfp7YtSiQZJqake10MhOUcPSW9x1YDg2iSucw5EA%3D%3D'],
+						['사람3', 0.2, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=QuC3H5VN1oWuNVRBKN%2B57AYK3iUzirw5Qr5aQNnNKW7jAO9Qvie2pA%3D%3D'],
+						['사람6', 0.1, 'http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=HPwZzTCr9qT75OoJJ0kcbbsaIV0%2FX4oewWAakef627HQsyoCzofJ9A%3D%3D']
+					]
+				};
+			var p = Popong.intimacy('viewport', member1, member2);
+		</script>
+	</body>
+</html>

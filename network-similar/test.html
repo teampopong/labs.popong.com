@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+	<head>
+		<title>test</title>
+		<meta charset="utf-8">
+		<script type="application/javascript" src="raphael-min.js"></script>
+		<script type="application/javascript" src="underscore-min.js"></script>
+	</head>
+	<body>
+		<div id="viewport"></div>
+		<script>
+			var Popong = (function () {
+				var Popong = {
+					init: function (elem, x, y) {
+						return _.extend(this, Raphael(elem, x, y));
+					}
+				};
+
+				return Popong;
+			})();
+
+			var p = Popong.init('viewport', 300, 200);
+			p.circle(100, 100, 30).attr({
+				fill: 'url(http://www.assembly.go.kr/renew09/mem/pr/mem_info_pic_128.jsp?mem_code=tiR9Nmk3LEZ5rIUEqbOa0q0fy3yn6vOmsWhe%2B7kaVatbRqjVVfTVFg%3D%3D)',
+				stroke: 'white'
+			});
+		</script>
+	</body>
+</html>
