@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Backbone test</title>
+	<link rel="stylesheet" href="css/lib/jquery.mobile-1.0.min.css" />
+
+	<link rel="stylesheet/less" type="text/css" href="less/main.less" />
+	<script src="js/lib/less.min.js" type="text/javascript"></script>
+	<script data-main="js/main" src="js/lib/require.js"></script>
+
+</head>
+<body>
+	<div id="carousel-page" data-role="page">
+		<div data-role="header" data-position="inline">
+			<img src="images/mobilelogo_v1.1.png" id="logo"/>
+			<h1 id="cur-member-name" field="title"></h1>
+			<a data-role="button" data-icon="map" class="ui-btn-right">지역구</a>
+		</div>
+
+		<div id="left-nav-wrapper">
+			<div id="left-nav">
+			</div>
+		</div>
+
+		<div data-role="content"> <!-- viewport -->
+			<div id="panel-board" class="transition"> <!-- scroller -->
+			</div>
+		</div>
+
+		<div class="clear"></div>
+	</div>
+	<div id="panel-board-overlay">
+	</div>
+</body>
+</html>

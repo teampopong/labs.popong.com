@@ -1,0 +1,5 @@
+<div class="panel" row="<%= row %>" col="<%= col %>">
+	<% tweetCollection.each(function (tweetModel) { %>
+	<%= tweetTemplate(tweetModel.toJSON()) %>
+	<% }); %>
+</div>

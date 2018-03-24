@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lato webfont test</title>
+		<link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Nunito:300' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+		<style>
+			.options {
+				position: fixed;
+				top: 60px;
+				left: 10px;
+			}
+
+			.container {
+				width: 800px;
+				margin: 60px auto;
+				text-rendering: optimizeLegibility;
+				font-size: 13pt;
+			}
+
+			[class^="lato"] {
+				font-family: 'Lato', sans-serif;
+			}
+
+			.lato300 {
+				font-weight: 300;
+			}
+
+			.lato400 {
+				font-weight: 400;
+			}
+
+			.droid-sans-mono {
+				font-family: 'Droid Sans Mono', sans-serif;
+			}
+
+			p.droid-sans-mono {
+				font-size: 11pt;
+			}
+
+			.open-sans {
+				font-family: 'Open Sans', sans-serif;
+			}
+
+			.nunito {
+				font-family: 'Nunito', sans-serif;
+			}
+
+			.cabin {
+				font-family: 'Cabin', sans-serif;
+			}
+
+			.sans-serif {
+				font-family: sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="options">
+			<form>
+				<input type="checkbox" name="font" class="font" value="lato300" checked="checked"><label>lato300</label><br>
+				<input type="checkbox" name="font" class="font" value="lato400" checked="checked"><label>lato400</label><br>
+				<input type="checkbox" name="font" class="font" value="open-sans" checked="checked"><label>open-sans</label><br>
+				<input type="checkbox" name="font" class="font" value="droid-sans-mono" checked="checked"><label>droid-sans-mono</label><br>
+				<input type="checkbox" name="font" class="font" value="nunito" checked="checked"><label>nunito</label><br>
+				<input type="checkbox" name="font" class="font" value="cabin" checked="checked"><label>cabin</label><br>
+				<input type="checkbox" name="font" class="font" value="sans-serif" checked="checked"><label>sans-serif</label><br>
+			</form>
+		</div>
+		<div class="container">
+			<h2 class="lato300">Lato300</h2>
+			<p class="lato300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec gravida, quam nec ultricies elementum, velit nulla porttitor tellus, eget sodales risus velit vitae quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Praesent id purus dui. Sed at tellus lectus. Vivamus convallis, velit eget pulvinar feugiat, turpis ipsum ullamcorper magna, ut feugiat ligula velit vel mauris. Nulla egestas volutpat tellus, non varius nunc gravida nec. Sed in dolor sed diam porttitor lacinia. Nam ligula nisl, fermentum ut vestibulum eu, blandit ut quam.</p>
+
+			<h2 class="lato400">Lato400</h2>
+			<p class="lato400">Nam vestibulum, risus non ornare vestibulum, leo velit scelerisque eros, non placerat tortor tortor a leo. Etiam molestie, felis nec interdum adipiscing, ipsum metus varius turpis, ac sollicitudin nulla dui non odio. Ut imperdiet, nulla viverra bibendum ullamcorper, est tellus malesuada diam, pulvinar commodo metus orci sed nibh. In facilisis tincidunt libero sit amet scelerisque. Sed dignissim aliquet est id tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo commodo est ac aliquet. Integer eros massa, consequat in dictum ac, placerat et tellus. Sed scelerisque consequat est, nec laoreet diam luctus eu. Aliquam ultricies tempor dui, sit amet pretium sapien hendrerit at. Aliquam consectetur neque vel sapien gravida nec volutpat lorem suscipit.</p>
+
+			<h2 class="open-sans">Open Sans</h2>
+			<p class="open-sans">Curabitur pretium gravida nulla, et egestas dolor adipiscing in. Donec quis dolor nec ligula porttitor lobortis. Cras porta pretium lacinia. Phasellus magna libero, feugiat nec consequat ut, tincidunt eget sapien. Pellentesque et nisl ut ipsum elementum tristique sed id diam. Integer a justo odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas rhoncus semper arcu a congue. Donec in est lorem, vitae malesuada mi.</p>
+
+			<h2 class="droid-sans-mono">Droid Sans Mono</h2>
+			<p class="droid-sans-mono">Duis augue libero, ultrices in consequat quis, varius tincidunt ipsum. Mauris tempus commodo leo id aliquam. Praesent vel nibh mauris, nec venenatis orci. Suspendisse potenti. Aenean eget sagittis justo. Nam dignissim dolor purus. Ut tincidunt adipiscing fermentum. Duis ipsum tellus, blandit vel eleifend pellentesque, pretium vel elit. Vivamus nunc velit, congue at imperdiet sed, hendrerit at dui.</p>
+
+			<h2 class="nunito">Nunito</h2>
+			<p class="nunito">Ut velit dolor, pellentesque quis tempus a, feugiat in lacus. Etiam eget neque neque, et pulvinar nunc. Phasellus mollis porta congue. Etiam porta velit a urna fringilla quis iaculis eros facilisis. Donec auctor sodales metus, quis rhoncus odio dictum quis. Phasellus nisi elit, facilisis eget eleifend quis, accumsan pulvinar erat. Aliquam lobortis ipsum at odio egestas vitae sollicitudin nulla eleifend. Donec porta eros a libero venenatis ac venenatis mauris faucibus.</p>
+
+			<h2 class="cabin">Cabin</h2>
+			<p class="cabin">Duis vestibulum sodales ante, id mattis magna mollis at. Nunc dignissim felis eu mi pellentesque eget pellentesque magna convallis. Phasellus blandit dapibus dui, non adipiscing ipsum fermentum a. Duis ipsum lacus, interdum quis aliquet sit amet, egestas a eros. Duis cursus, magna vitae facilisis sagittis, justo tortor accumsan turpis, ac tincidunt mauris tellus sit amet elit. Proin et arcu et mi pharetra vestibulum. Integer at magna at libero venenatis consectetur. Vivamus ante velit, tempus sit amet laoreet eu, laoreet sit amet eros. Donec at sapien lacus. Aenean pulvinar ligula in ipsum eleifend faucibus. Aliquam erat volutpat. Curabitur diam orci, porta congue fringilla quis, commodo in turpis. Sed vel justo neque. Praesent posuere ligula eu dolor imperdiet pharetra. Donec dignissim augue nec nibh molestie sit amet porta diam commodo. Ut vestibulum feugiat purus, ut iaculis felis ornare vehicula.</p>
+
+			<h2 class="sans-serif">Sans-serif</h2>
+			<p class="sans-serif">Curabitur mollis nunc et justo feugiat et fermentum augue tristique. Quisque interdum malesuada nunc, ut auctor est rutrum pretium. Etiam tincidunt cursus arcu et auctor. Vivamus vitae sem ut augue posuere adipiscing. Duis sodales ullamcorper mauris at feugiat. Quisque feugiat, arcu id dapibus posuere, risus magna tincidunt enim, quis laoreet ligula purus in libero. Proin venenatis tristique mattis. In malesuada sagittis egestas. Etiam tincidunt dui sit amet sapien consectetur eu blandit urna commodo. Fusce non scelerisque tortor. Integer eget bibendum odio.</p>
+		</div>
+		<script>
+			var ckboxes = document.getElementsByClassName('font');
+			for (var i = 0, li = ckboxes.length; i < li; i++) {
+				var box = ckboxes[i];
+				box.onchange = function () {
+					var paragraphs = document.getElementsByClassName(this.value);
+					for (var j = 0, lj = paragraphs.length; j < lj; j++) {
+						var paragraph = paragraphs[j];
+						paragraph.style.display = this.checked ? 'block' : 'none';
+					}
+				};
+			}
+		</script>
+	</body>
+</html>

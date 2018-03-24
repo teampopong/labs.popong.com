@@ -1,0 +1,139 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  overflow: hidden;
+  -webkit-user-select: none;
+  -webkit-text-size-adjust: none;
+}
+.border-box {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.ui-icon-map {
+  background-image: url('../images/icon-map.png');
+}
+#carousel-page div[data-role="header"] {
+  border-bottom: 0;
+}
+#logo {
+  display: inline-block;
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  height: 20px;
+}
+#left-nav-wrapper {
+  float: left;
+  position: relative;
+  vertical-align: top;
+  text-align: center;
+  width: 10%;
+  max-width: 50px;
+  background: #111;
+  background-image: -webkit-linear-gradient(right, #111111, #3c3c3c);
+}
+#left-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-linear-gradient(top, #111111, rgba(0, 0, 0, 0));
+}
+#left-nav .menu {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #aaa;
+  font-weight: bold;
+  text-shadow: 0 -1px 1px #000000;
+  line-height: 1.1em;
+}
+#left-nav .menu.selected {
+  color: white;
+}
+.ui-content {
+  padding: 0;
+}
+.carousel2d [data-role="content"] {
+  float: left;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: whitesmoke;
+}
+.carousel2d [data-role="content"] > * > * {
+  list-style: none;
+  display: block;
+  float: left;
+}
+.carousel2d [data-role="content"] > * > * > * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  float: left;
+  padding: 10px;
+}
+.panel {
+  padding: 5px;
+  height: 95%;
+  overflow: hidden;
+  background: white;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+.member_name {
+  font-weight: bold;
+}
+.member_image {
+  max-width: 100px;
+  max-height: 100px;
+}
+.member_stats_chart {
+  margin: 20px auto 0;
+  width: 270px;
+  height: 150px;
+}
+.tweet {
+  padding: 7px 0;
+  border-bottom: 1px solid #aaa;
+  font-size: 14px;
+}
+.tweet_userpic {
+  max-width: 100%;
+}
+.tweet_name {
+  font-weight: bold;
+}
+.tweet_text {
+  width: 100%;
+}
+.width20p {
+  max-width: 20%;
+}
+.width80p {
+  max-width: 78%;
+}
+.nolinkstyle {
+  text-decoration: none;
+  color: black;
+}
+.column {
+  display: inline-block;
+  vertical-align: top;
+}
+.clear {
+  clear: both;
+}

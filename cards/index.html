@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>card</title>
+		<link href="css/pepper-grinder/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/font-awesome.css" rel="stylesheet">
+		<style>
+			body {
+				padding-top: 20px;
+			}
+
+			.container {
+				position: relative;
+				border: 1px solid #777;
+				border-radius: 5px;
+				height: 600px;
+			}
+
+			#main-container {
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 440px;
+				width: 100%;
+				border-radius: 5px 5px 0 0;
+				background: #eef;
+			}
+
+			#main {
+				margin: 20px;
+			}
+
+			#card-list {
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				height: 160px;
+				width: 100%;
+				border-top: 1px solid #777;
+				border-radius: 0 0 5px 5px;
+				background: #efe;
+			}
+
+			.card {
+				position: relative;
+				float: left;
+				height: 140px;
+				width: 100px;
+				margin: 10px 0 10px 10px;
+				border: 1px solid #777;
+				border-radius: 5px;
+				background: #fee;
+				cursor: pointer;
+			}
+
+			.card.selected {
+				background: #ffe;
+			}
+
+			.card-title {
+				text-align: center;
+			}
+
+			h1 {
+				display: inline-block;
+			}
+
+			a.add-to-cart {
+				margin-left: 10px;
+				font-size: 20px;
+				color: #333;
+			}
+
+			a.add-to-cart:hover {
+				color: #339;
+				text-decoration: none;
+			}
+
+			.ui-effects-transfer {
+				border: 2px dotted gray;
+			}
+
+			.ui-state-highlight {
+				float: left;
+				margin: 10px 0 0 10px;
+				width: 100px;
+				height: 140px;
+				background: #ffc;
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div id="main-container">
+				<div id="main">
+				</div>
+			</div>
+			<div id="card-list" class="sortable">
+			</div>
+		</div>
+
+		<!-- imports -->
+		<script src="js/jquery-1.8.3.js"></script>
+		<script src="js/jquery-ui-1.9.2.custom.js"></script>
+		<script src="js/mustache.js"></script>
+
+		<!-- templates -->
+		<script type="text/mustache" id="tmpl-card">
+			<div id="card-{{id}}" class="card">
+				<h4 class="card-title">{{title}}</h4>
+			</div>
+		</script>
+		<script type="text/mustache" id="tmpl-main">
+			<h1 class="main-title">{{title}}</h1><a href="#" class="add-to-cart"><i class="icon-shopping-cart"></i>Add to Cart</a>
+			<p class="main-content">{{content}}</p>
+		</script>
+
+		<!-- data -->
+		<script type="application/json" id="card-data">
+			[
+				{
+					"title": 1,
+					"content": "카드1"
+				},
+				{
+					"title": 2,
+					"content": "카드2"
+				},
+				{
+					"title": 3,
+					"content": "카드3"
+				}
+			]
+		</script>
+
+		<!-- codes -->
+		<script>
+			var TMPL_CARD = $('#tmpl-card').html(),
+				TMPL_MAIN = $('#tmpl-main').html();
+			var data = JSON.parse($('#card-data').html());
+			var $cardList = $('#card-list').disableSelection(),
+				$mainContainer = $('#main-container'),
+				$main = $('#main');
+
+			function uid() {
+				return Math.floor(
+					Math.random() * 0x10000 /* 65536 */
+				).toString(16);
+			}
+
+			function addCard(card) {
+				card['id'] = uid();
+				var $card = $(Mustache.render(TMPL_CARD, card)).data(card);
+				registerCardEvent($card);
+				$cardList.append($card);
+				return $card;
+			}
+
+			function registerCardEvent($card) {
+				$card.click(function () {
+					$('.card.selected', $cardList).removeClass('selected');
+					$(this).addClass('selected');
+					$main.html(Mustache.render(TMPL_MAIN, $(this).data()));
+					registerMainEvents();
+				}).disableSelection();
+			}
+
+			for (var i = 0, len = data.length; i < len; i++) {
+				var card = data[i];
+				addCard(card);
+			}
+
+			var $cards = $('.card');
+
+			$('.sortable').sortable({
+				revert: true,
+				placeholder: "ui-state-highlight"
+			});
+
+			function registerMainEvents() {
+				$('.add-to-cart').click(function () {
+					var title = $('.main-title', $main).text(),
+						content = $('.main-content', $main).text(),
+						card = {
+							title: title,
+							content: content
+						};
+					var $card = addCard(card);
+					$mainContainer.effect('transfer', {
+						className: 'ui-effects-transfer',
+						to: '#'+$card.attr('id')
+					}, 500);
+					return false;
+				});
+			}
+
+			$('.card:first').click();
+		</script>
+	</body>
+</html>

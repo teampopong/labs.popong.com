@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "image": "images/member-001.jpg",
+        "name": "홍길동",
+        "party": "한나라당",
+        "birth": "19900628",
+        "twitterId": "cornchz",
+		"stats": {
+			"출석률": 3,
+			"관용도": 7,
+			"통과율": 5,
+			"인맥다양성": 8,
+			"관심다양성": 4
+		},
+        "popong": {
+            "pong": 13,
+            "depong": 103
+        }
+    },
+    {
+        "id": 2,
+        "image": "images/member-002.jpg",
+        "name": "안철수2",
+        "party": "딴나라당",
+        "birth": "19900628",
+        "twitterId": "dongx3",
+		"stats": {
+			"출석률": 7,
+			"관용도": 10,
+			"통과율": 8,
+			"인맥다양성": 5,
+			"관심다양성": 6
+		},
+        "popong": {
+            "pong": 13,
+            "depong": 103
+        }
+    },
+    {
+        "id": 3,
+        "image": "images/member-003.jpg",
+        "name": "안개똥",
+        "party": "두나라당",
+        "birth": "20121212",
+        "twitterId": "jooddang",
+		"stats": {
+			"출석률": 2,
+			"관용도": 3,
+			"통과율": 1,
+			"인맥다양성": 3,
+			"관심다양성": 4
+		},
+        "popong": {
+            "pong": 130,
+            "depong": 13
+        }
+    }
+]  

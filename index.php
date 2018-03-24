@@ -27,12 +27,10 @@ $dirs = getDirNames();
 		<meta charset="utf-8">
 	</head>
 	<body>
-		<em><strong>NOTE</strong>: 지금은 알아볼 수 없는 이름으로 쓰여 있는데 곧 수정할게요 ;ㅁ;</em>
 		<ul>
-		<? foreach ($dirs as $dir) {
+		<?php foreach ($dirs as $dir) {
 			echo '<li><a href="'.$dir.'">'.$dir.'</a></li>';
 		} ?>
-			<li><a href="data">data-explorer</a></li>
 		</ul>
 	</body>
 </html>

@@ -1,0 +1,189 @@
+// TODO: 파일 분할 필요
+// TODO: make responsive
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	// FIXME: left-nav로 인해 약간 넘쳐서 스크롤바 발생
+	overflow: hidden;
+	-webkit-user-select: none;
+	-webkit-text-size-adjust: none;
+}
+
+.border-box {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.border-radius (@radius: 5px) {
+	border-radius: @radius;
+	-moz-border-radius: @radius;
+	-webkit-border-radius: @radius;
+	-o-border-radius: @radius;
+}
+
+.box-shadow (@offset-x: 0, @offset-y: 1px, @blur-radius: 1px, @spread-radius: 0, @color: rgba(0,0,0,0.2)) {
+	box-shadow: @arguments;
+	-moz-box-shadow: @arguments;
+	-webkit-box-shadow: @arguments;
+	-o-box-shadow: @arguments;
+}
+
+.bg-gradient (@start-orientation: top, @start-color: #111, @end-color: #333) {
+	background-image: -webkit-linear-gradient(@start-orientation, @start-color, @end-color);
+}
+
+.ui-icon-map {
+	background-image: url('../images/icon-map.png');
+}
+
+#carousel-page {
+	div[data-role="header"] {
+		border-bottom: 0;
+	}
+}
+
+#logo {
+	display: inline-block;
+	position: absolute;
+	top: 9px;
+	left: 10px;
+	height: 20px;
+}
+
+#left-nav-wrapper {
+	float: left;
+	position: relative;
+	vertical-align: top;
+	text-align: center;
+	width: 10%;
+	max-width: 50px;
+	background: #111;
+	.bg-gradient(right, #111, #3c3c3c);
+}
+
+#left-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	.bg-gradient(top, #111, rgba(0,0,0,0));
+
+	.menu {
+		margin-top: 20px;
+		font-size: 16px;
+		color: #aaa;
+		font-weight: bold;
+		text-shadow: 0 -1px 1px black;
+		line-height: 1.1em;
+
+		&.selected {
+			color: white;
+		}
+	}
+}
+
+.ui-content {
+	padding: 0;
+}
+
+.carousel2d [data-role="content"] {
+	float: left;
+	position: relative;	// On older OS versions "position" and "z-index" must be defined,
+	z-index: 1;			// it seems that recent webkit is less picky and works anyway.
+	overflow: hidden;
+	background: whitesmoke;
+
+	> * > * { // column
+		list-style: none;
+		display: block; float: left;
+
+		> * { // cell
+
+			.border-box;
+			display: block; float: left;
+			padding: 10px;
+		}
+	}
+}
+
+#panel-board-overlay {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	display: none;
+}
+
+.panel {
+	padding: 5px;
+	height: 95%;
+	overflow: hidden;
+
+	background: white;
+	border: 1px solid #aaa;
+	.border-radius;
+	.box-shadow();
+}
+
+.member_name {
+	font-weight: bold;
+}
+
+.member_image {
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.member_stats_chart {
+	margin: 20px auto 0;
+	width: 270px;
+	height: 150px;
+}
+
+.tweet {
+	padding: 7px 0;
+	border-bottom: 1px solid #aaa;
+	font-size: 14px;
+}
+
+.tweet_userpic {
+	max-width: 100%;
+}
+
+.tweet_name {
+	font-weight: bold;
+}
+
+.tweet_text {
+	width: 100%;
+}
+
+.width20p {
+	max-width: 20%;
+}
+
+.width80p {
+	max-width: 78%;
+}
+
+.nolinkstyle {
+	text-decoration: none;
+	color: black;
+}
+
+.column {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.clear {
+	clear: both;
+}

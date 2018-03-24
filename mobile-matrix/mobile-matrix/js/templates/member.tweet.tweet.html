@@ -1,0 +1,10 @@
+<div class="tweet">
+	<div class="column width20p">
+		<img class="tweet_userpic" src="<%=user.profile_image_url%>" />
+	</div>
+	<div class="column width80p">
+		<span class="tweet_name"><%=user.screen_name%></span><br>
+		<span class="tweet_text"><%=_.string.truncate(text, 40)%></span>
+	</div>
+	<div class="clear"></div>
+</div>
