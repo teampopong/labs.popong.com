@@ -1,0 +1,9 @@
+[submodule "codenamu"]
+	path = codenamu
+	url = https://github.com/teampopong/nanow.git
+[submodule "codenamu2014"]
+	path = codenamu2014
+	url = https://github.com/teampopong/codenamu2014
+[submodule "votes"]
+	path = votes
+	url = https://github.com/minsukkahng/popong-vis-lab
